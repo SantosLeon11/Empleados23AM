@@ -62,5 +62,31 @@ namespace Empleados23AM
             txtCorreo.Text = empleado.Correo;
             txtFecha.Text = empleado.FechaRegistro.ToString();
         }
+
+        private void BtnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            int Id = int.Parse (txtId.Text);
+            Empleado empleado = new Empleado();
+            empleado.PkEmpleado = Id;
+            empleado.Nombre = txtNombre.Text;
+            empleado.Apellido = txtApellido.Text;
+            empleado.Correo = txtCorreo.Text;
+            empleado.FechaRegistro = DateTime.Now;
+            services.Update(empleado);
+            MessageBox.Show("Se edito correctamente");
+        }
+
+        private void Eliminar_Click(object sender, RoutedEventArgs e)
+        {
+            int Id = int .Parse (txtId.Text);
+            Empleado empleado = services.Delete(Id);
+            txtId.Text = "";
+            txtNombre.Text = "";
+            txtApellido.Text = "";
+            txtCorreo.Text = "";
+            txtFecha.Text = "";
+            
+        }
+        
     }
 }
